@@ -15,7 +15,16 @@
  */
 
 import { defineComponents } from '@iwsdk/core';
-import { DemoCube } from './demo-cube-component.js';
-import { Robot } from './robot-component.js';
+import {
+  PongArena,
+  PongBall,
+  PongPaddle,
+  PongScoreboard,
+} from './pong-components.js';
 
-export default defineComponents([Robot, DemoCube]);
+export default defineComponents([
+  PongArena,
+  PongBall,
+  PongPaddle,
+  PongScoreboard,
+]);

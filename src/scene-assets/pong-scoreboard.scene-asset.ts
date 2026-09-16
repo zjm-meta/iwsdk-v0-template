@@ -14,13 +14,23 @@
  * limitations under the License.
  */
 
-import { BoxGeometry, Mesh, MeshStandardMaterial } from '@iwsdk/core';
-import { CUBE_COLORS } from '../demo-cube-component.js';
+import { Mesh, MeshBasicMaterial, PlaneGeometry } from '@iwsdk/core';
 
-const cube = new Mesh(
-  new BoxGeometry(0.2, 0.2, 0.2),
-  new MeshStandardMaterial({ color: CUBE_COLORS[0] }),
+/**
+ * A blank emissive panel. `PongScoreboardSystem` clones this material at
+ * runtime and attaches a canvas texture — the asset module itself stays free
+ * of DOM access so the editor can evaluate it in its own realm.
+ */
+const scoreboard = new Mesh(
+  new PlaneGeometry(1.8, 0.56),
+  new MeshBasicMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.001,
+    depthWrite: false,
+    toneMapped: false,
+  }),
 );
-cube.name = 'Demo Cube';
+scoreboard.name = 'Pong Scoreboard';
 
-export default cube;
+export default scoreboard;

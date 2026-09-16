@@ -3,98 +3,200 @@
   "units": "meters",
   "components": {
     "com.iwsdk.components.DomeGradient": {
-      "sky": [0.2423, 0.6172, 0.8308, 1],
-      "equator": [0.6584, 0.7084, 0.7913, 1],
-      "ground": [0.807, 0.7758, 0.7454, 1],
+      "sky": [0.012, 0.014, 0.045, 1],
+      "equator": [0.006, 0.008, 0.028, 1],
+      "ground": [0.002, 0.002, 0.008, 1],
       "intensity": 1
     },
     "com.iwsdk.components.IBLGradient": {
-      "sky": [0.6902, 0.749, 0.7843, 1],
-      "equator": [0.6584, 0.7084, 0.7913, 1],
-      "ground": [0.807, 0.7758, 0.7454, 1],
+      "sky": [0.05, 0.075, 0.17, 1],
+      "equator": [0.03, 0.04, 0.1, 1],
+      "ground": [0.008, 0.01, 0.028, 1],
       "intensity": 1
     }
   },
   "resources": {},
   "nodes": [
     {
-      "id": "environment",
-      "name": "Environment",
+      "id": "floor",
+      "name": "Neon Floor",
       "content": {
         "type": "asset",
-        "asset": "environment-desk"
+        "asset": "neon-floor"
       },
       "transform": {
-        "position": [0, -0.106921583, 0],
-        "rotationDeg": [0, 180, 0]
+        "position": [0, 0, 0]
       },
       "components": {
         "LocomotionEnvironment": {}
       }
     },
     {
-      "id": "plant-sansevieria",
-      "name": "Plant Sansevieria",
+      "id": "arena",
+      "name": "Pong Arena",
       "content": {
         "type": "asset",
-        "asset": "plant-sansevieria"
+        "asset": "pong-arena"
       },
       "transform": {
-        "position": [1.2, 0.85, -1.8]
+        "position": [0, 1.45, -3.4]
       },
       "components": {
-        "RayInteractable": {},
-        "DistanceGrabbable": {
-          "movementMode": "MoveFromTarget"
+        "PongArena": {
+          "halfWidth": 1.1,
+          "halfHeight": 0.7,
+          "halfDepth": 1.7
         }
       }
     },
     {
-      "id": "robot",
-      "name": "Robot",
+      "id": "paddle-player",
+      "name": "Player Paddle",
       "content": {
         "type": "asset",
-        "asset": "robot"
+        "asset": "pong-paddle-player"
       },
       "transform": {
-        "position": [-1.2, 0.95, -1.8],
-        "scale": 0.5
+        "position": [0, 1.45, -1.88]
       },
       "components": {
+        "PongPaddle": {
+          "side": "player"
+        },
         "AudioSource": {
           "src": "./audio/chime.mp3",
+          "positional": true,
+          "volume": 0.4,
           "maxInstances": 3,
-          "playbackMode": "fade-restart"
-        },
-        "RayInteractable": {},
-        "Robot": {}
+          "playbackMode": "restart"
+        }
       }
     },
     {
-      "id": "demo-cube",
-      "name": "Demo Cube",
+      "id": "paddle-opponent",
+      "name": "Opponent Paddle",
       "content": {
         "type": "asset",
-        "asset": "demo-cube"
+        "asset": "pong-paddle-opponent"
       },
       "transform": {
-        "position": [0, 1, -1.7]
+        "position": [0, 1.45, -4.92]
       },
       "components": {
-        "RayInteractable": {},
-        "OneHandGrabbable": {},
-        "DemoCube": {}
+        "PongPaddle": {
+          "side": "ai",
+          "maxSpeed": 1.9
+        },
+        "AudioSource": {
+          "src": "./audio/chime.mp3",
+          "positional": true,
+          "volume": 0.3,
+          "maxInstances": 3,
+          "playbackMode": "restart"
+        }
+      }
+    },
+    {
+      "id": "ball",
+      "name": "Pong Ball",
+      "content": {
+        "type": "asset",
+        "asset": "pong-ball"
+      },
+      "transform": {
+        "position": [0, 1.45, -3.4]
+      },
+      "components": {
+        "PongBall": {}
+      }
+    },
+    {
+      "id": "scoreboard",
+      "name": "Scoreboard",
+      "content": {
+        "type": "asset",
+        "asset": "pong-scoreboard"
+      },
+      "transform": {
+        "position": [0, 2.45, -5.22]
+      },
+      "components": {
+        "PongScoreboard": {}
+      }
+    },
+    {
+      "id": "key-spot",
+      "name": "Court Key Light",
+      "transform": {
+        "position": [0, 3.6, -3.4],
+        "rotationDeg": [-90, 0, 0]
+      },
+      "components": {
+        "com.iwsdk.components.SpotLight": {
+          "color": [0.55, 0.62, 0.9, 1],
+          "intensity": 42,
+          "distance": 9,
+          "decay": 2,
+          "angleDeg": 52,
+          "penumbra": 0.85
+        }
+      }
+    },
+    {
+      "id": "player-rim",
+      "name": "Player Rim Light",
+      "transform": {
+        "position": [0, 1.45, -1.65]
+      },
+      "components": {
+        "com.iwsdk.components.PointLight": {
+          "color": [0.014, 0.658, 0.857, 1],
+          "intensity": 7,
+          "distance": 5,
+          "decay": 2
+        }
+      }
+    },
+    {
+      "id": "opponent-rim",
+      "name": "Opponent Rim Light",
+      "transform": {
+        "position": [0, 1.45, -5.15]
+      },
+      "components": {
+        "com.iwsdk.components.PointLight": {
+          "color": [1, 0.026, 0.287, 1],
+          "intensity": 7,
+          "distance": 5,
+          "decay": 2
+        }
+      }
+    },
+    {
+      "id": "floor-bounce",
+      "name": "Floor Bounce Light",
+      "transform": {
+        "position": [0, 0.4, -3.4]
+      },
+      "components": {
+        "com.iwsdk.components.PointLight": {
+          "color": [0.08, 0.16, 0.45, 1],
+          "intensity": 5,
+          "distance": 7,
+          "decay": 2
+        }
       }
     },
     {
       "id": "welcome-panel",
-      "name": "Welcome Panel",
+      "name": "How To Play",
       "content": {
         "type": "asset",
         "asset": "welcome-panel"
       },
       "transform": {
-        "position": [0, 1.6, -2],
+        "position": [-2.1, 1.5, -2.2],
+        "rotationDeg": [0, 40, 0],
         "scale": 0.4
       },
       "components": {
@@ -102,46 +204,10 @@
         "ScreenSpace": {
           "top": "20px",
           "left": "20px",
-          "width": "25vw",
-          "height": "40%"
+          "width": "24vw",
+          "height": "42%"
         }
       }
-    },
-    {
-      "id": "input-hud",
-      "name": "Controller Input HUD",
-      "content": {
-        "type": "asset",
-        "asset": "input-hud"
-      },
-      "transform": {
-        "position": [1.7, 1.35, -1.75],
-        "rotationDeg": [0, -44, 0],
-        "scale": 0.4
-      },
-      "components": {
-        "RayInteractable": {},
-        "ScreenSpace": {
-          "top": "20px",
-          "right": "20px",
-          "width": "25vw",
-          "height": "40%"
-        }
-      }
-    },
-    {
-      "id": "webxr-banner",
-      "name": "WebXR Banner",
-      "content": {
-        "type": "asset",
-        "asset": "webxr-banner"
-      },
-      "transform": {
-        "position": [0, 1, 1.8],
-        "rotationDeg": [0, 180, 0],
-        "scale": [1, -1, 1]
-      },
-      "components": {}
     }
   ]
 }

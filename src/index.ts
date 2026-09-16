@@ -14,17 +14,24 @@
  * limitations under the License.
  */
 
-import { World } from '@iwsdk/core';
+import { signal, World } from '@iwsdk/core';
 import projectOptions from 'virtual:iwsdk-project';
-import { ControllerInputSystem } from './input.js';
 import { PanelSystem } from './panel.js';
-import { RobotSystem } from './robot.js';
+import { PongSystem } from './pong.js';
+import { PongPaddleControlSystem } from './pong-paddle-control.js';
+import { PongScoreboardSystem } from './pong-scoreboard.js';
 
 World.create(
   document.getElementById('scene-container') as HTMLDivElement,
   projectOptions,
 ).then((world) => {
-  world.registerSystem(RobotSystem);
-  world.registerSystem(PanelSystem);
-  world.registerSystem(ControllerInputSystem);
+  const globals = world.globals as Record<string, unknown>;
+  globals.pongPlayerScore = signal(0);
+  globals.pongOpponentScore = signal(0);
+  globals.pongStatus = signal('');
+
+  world.registerSystem(PongPaddleControlSystem, { priority: 5 });
+  world.registerSystem(PongSystem, { priority: 12 });
+  world.registerSystem(PongScoreboardSystem, { priority: 32 });
+  world.registerSystem(PanelSystem, { priority: 34 });
 });

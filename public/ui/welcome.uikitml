@@ -28,7 +28,7 @@
   }
 
   .panel-content {
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     padding-top: 16px;
     padding-left: 24px;
@@ -37,7 +37,7 @@
 
   .heading {
     height: 48px;
-    text-align: center;
+    text-align: left;
     font-size: 24px;
     font-weight: 700;
     line-height: 24px;
@@ -62,6 +62,19 @@
     color: rgba(255, 255, 255, 0.9);
   }
 
+  .hint {
+    color: #5c5c5c;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .hint:dark {
+    color: rgba(255, 255, 255, 0.65);
+  }
+
   .button {
     justify-content: flex-start;
     margin-left: 24px;
@@ -76,11 +89,15 @@
 </style>
 <Panel class="panel-root">
   <div class="panel-content">
-    <div class="heading">Hello, Immersive Web!</div>
+    <div class="heading">Neon Pong</div>
     <Divider></Divider>
     <div class="sub-heading">
-      Build interactive browser, mixed-reality, and virtual-reality experiences
-      with Immersive Web SDK.
+      Move your mouse across the view to slide the cyan paddle. Beat the
+      magenta AI to seven points.
+    </div>
+    <div class="hint">
+      In headset: hold a controller and move your hand. The paddle mirrors it,
+      and the rally speeds up with every return.
     </div>
   </div>
   <Button id="xr-button" class="button">

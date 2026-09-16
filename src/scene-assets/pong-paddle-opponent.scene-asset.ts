@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
-import { createComponent } from '@iwsdk/core';
+import { NEON } from '../pong-components.js';
+import { createPaddle } from '../pong-paddle-shape.js';
 
-export const Robot = createComponent('Robot', {});
+export default createPaddle(NEON.opponent, 'Opponent Paddle');

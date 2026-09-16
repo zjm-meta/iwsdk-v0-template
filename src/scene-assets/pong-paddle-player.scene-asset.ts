@@ -14,10 +14,7 @@
  * limitations under the License.
  */
 
-import { createComponent } from '@iwsdk/core';
+import { NEON } from '../pong-components.js';
+import { createPaddle } from '../pong-paddle-shape.js';
 
-/** Tag for the grabbable demo cube that the controller face buttons drive. */
-export const DemoCube = createComponent('DemoCube', {});
-
-/** Palette cycled by the X button. Index 0 is the cube's initial color. */
-export const CUBE_COLORS = [0x3b82f6, 0x22c55e, 0xef4444, 0xeab308, 0xa855f7];
+export default createPaddle(NEON.player, 'Player Paddle');
