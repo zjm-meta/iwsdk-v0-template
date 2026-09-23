@@ -1,11 +1,11 @@
 # IWSDK Template for v0
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![IWSDK](https://img.shields.io/badge/IWSDK-0.5.3-6f42c1.svg)](https://developers.meta.com/horizon/documentation/web/webxr-iwsdk-overview)
+[![IWSDK](https://img.shields.io/badge/IWSDK-1.0.0--rc.0-6f42c1.svg)](https://developers.meta.com/horizon/documentation/web/webxr-iwsdk-overview)
 [![Framework: Vite](https://img.shields.io/badge/Framework-Vite-646cff.svg)](https://vite.dev/)
 
 A WebXR starter built with the [Immersive Web SDK](https://developers.meta.com/horizon/documentation/web/webxr-iwsdk-overview)
-(IWSDK 0.5.3), packaged as a template for [v0](https://v0.app/) and deployable to
+(IWSDK 1.0.0-rc.0), packaged as a template for [v0](https://v0.app/) and deployable to
 Vercel as a static Vite app.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmeta-quest%2Fiwsdk-v0-template)
