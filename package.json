@@ -9,8 +9,8 @@
     "url": "git+https://github.com/meta-quest/iwsdk-v0-template.git"
   },
   "scripts": {
-    "dev": "vite",
-    "dev:managed": "iwsdk dev up --open --foreground",
+    "dev": "iwsdk dev restart --foreground",
+    "dev:managed": "iwsdk dev restart --foreground",
     "dev:runtime": "vite",
     "dev:down": "iwsdk dev down",
     "dev:status": "iwsdk dev status",
