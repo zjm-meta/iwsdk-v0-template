@@ -15,7 +15,19 @@
  */
 
 import { iwsdkDev } from '@iwsdk/vite-plugin-dev';
-import { defineConfig } from 'vite';
+import { createLogger, defineConfig } from 'vite';
+
+// The prebuilt @iwsdk/*, elics and @drawcall/uikitml packages ship sourcemaps
+// that reference original source files not included in their published output.
+// Vite logs a "Sourcemap for ... points to missing source files" warning for
+// each one on startup. These are harmless third-party artifacts, so filter
+// only that specific message while leaving every other warning intact.
+const logger = createLogger();
+const originalWarn = logger.warn;
+logger.warn = (msg, options) => {
+  if (msg.includes('points to missing source files')) return;
+  originalWarn(msg, options);
+};
 
 // v0 and Vercel Sandbox terminate TLS at their proxy, so the server running
 // inside the sandbox must speak plain HTTP. IWSDK otherwise enables a cached
@@ -32,6 +44,7 @@ process.env.IWSDK_DEV_OPEN ??= 'false';
 const port = Number.parseInt(process.env.PORT ?? '', 10) || 5173;
 
 export default defineConfig({
+  customLogger: logger,
   plugins: [iwsdkDev({ https: devHttps })],
   server: {
     host: '0.0.0.0',
